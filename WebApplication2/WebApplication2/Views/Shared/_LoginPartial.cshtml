@@ -1,0 +1,34 @@
+﻿@using System.Security.Claims
+@{
+    var homeLinkText = "Nom de l'application";
+    if (Request.IsAuthenticated)
+    {
+        var claimIdentity = User.Identity as ClaimsIdentity;
+
+        if (claimIdentity != null)
+        {
+            homeLinkText = "Bonjour, " + claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+        }
+        <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+                 @Html.ActionLink(homeLinkText, "Index", "Home", new { area = ""}, new {data_toggle = "dropdown" })
+                 <ul class="dropdown-menu">
+                     <li>@Html.ActionLink("Chercher Voiture", "IndexSearchVoiture", "Users")</li>
+                  @* @if (@HttpContext.Current.Session["role"].ToString() == "1") {
+        <li>@Html.ActionLink("Liste Utilisateur", "index", "Users")</li>
+    }*@
+       @*            <li>@Html.ActionLink("Modifier Profile", "Edit", "Users",new { id = @HttpContext.Current.Session["id"].ToString() },null)</li> *@
+                     <li>@Html.ActionLink("Log Out", "Logout", "Authentication")</li>
+                 </ul>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("S’inscrire", "Create", "Users", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Se connecter", "Login", "Authentication", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+}
+

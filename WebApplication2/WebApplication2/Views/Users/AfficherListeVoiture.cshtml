@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApplication2.Models.Voiture>
+
+@{
+    ViewBag.Title = "Resultal de voiture";
+}
+
+<h2>Liste Voitures</h2>
+
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            Prix Par Jour
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kilometers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyIngDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+               @item.getUser().ToString()
+               
+            </td>
+            <td>
+                @item.getPosition().ToString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prix_parJour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kilometers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyIngDate)
+            </td>
+            <td>
+                @item.getStatus().ToString()
+            </td>
+      
+        </tr>
+    }
+
+</table>
